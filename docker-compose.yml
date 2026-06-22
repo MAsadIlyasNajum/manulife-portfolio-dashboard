@@ -1,0 +1,84 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: portfolio_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-portfolio_db}
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-portfolio_db}' ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    networks:
+      - portfolio_network
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    image: manulife-portfolio-api:latest
+    container_name: portfolio_api
+    environment:
+      NODE_ENV: production
+      API_PORT: 3000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-portfolio_db}?schema=public
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-replace_me_access_secret}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-replace_me_refresh_secret}
+      JWT_ACCESS_EXPIRES_IN: 15m
+      JWT_REFRESH_EXPIRES_IN: 7d
+    ports:
+      - '3000:3000'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: [ 'CMD', 'node', '-e', "require('node:http').get('http://127.0.0.1:3000/docs', (res) => process.exit(res.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))" ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    networks:
+      - portfolio_network
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api}
+    image: manulife-portfolio-web:latest
+    container_name: portfolio_web
+    ports:
+      - '4200:80'
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: [ 'CMD-SHELL', 'wget -q -O /dev/null http://127.0.0.1/ || exit 1' ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    networks:
+      - portfolio_network
+
+volumes:
+  postgres_data:
+
+networks:
+  portfolio_network:
+    driver: bridge
