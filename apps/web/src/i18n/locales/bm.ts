@@ -1,0 +1,182 @@
+const bm = {
+    language: {
+        switch: 'Bahasa',
+        en: 'EN',
+        bm: 'BM',
+    },
+    app: {
+        title: 'Papan Pemuka Portfolio',
+        nav: {
+            dashboard: 'Papan Pemuka',
+            investments: 'Pelaburan',
+            transactions: 'Transaksi',
+        },
+        logout: {
+            idle: 'Log Keluar',
+            loading: 'Sedang log keluar...',
+        },
+    },
+    common: {
+        labels: {
+            emailAddress: 'Alamat Emel',
+            password: 'Kata Laluan',
+            confirmPassword: 'Sahkan Kata Laluan',
+            portfolio: 'Portfolio',
+            name: 'Nama',
+            assetType: 'Jenis Aset',
+            quantity: 'Kuantiti',
+            purchasePrice: 'Harga Belian',
+            currentPrice: 'Harga Semasa',
+            investedValue: 'Nilai Dilaburkan',
+            currentValue: 'Nilai Semasa',
+            actions: 'Tindakan',
+            investment: 'Pelaburan',
+            totalBuyValue: 'Jumlah Nilai Beli',
+            totalSellValue: 'Jumlah Nilai Jual',
+            netFlow: 'Aliran Bersih',
+            buy: 'Beli',
+            sell: 'Jual',
+            qtyWithValue: 'Kuantiti {{value}}',
+            priceWithValue: 'Harga {{value}}',
+            unknownInvestment: 'Pelaburan tidak diketahui',
+        },
+        actions: {
+            addInvestment: 'Tambah Pelaburan',
+            edit: 'Edit',
+            delete: 'Padam',
+            cancel: 'Batal',
+            create: 'Cipta',
+            save: 'Simpan',
+            signIn: 'Log Masuk',
+            createAccount: 'Cipta Akaun',
+        },
+        status: {
+            loading: 'Sedang dimuatkan...',
+        },
+    },
+    auth: {
+        tabs: {
+            login: 'Log Masuk',
+            register: 'Daftar',
+        },
+        login: {
+            title: 'Selamat Kembali',
+            subtitle: 'Log masuk untuk mengakses portfolio anda',
+            emailPlaceholder: 'demo@manulife.com',
+            demoHint: 'Demo: demo@manulife.com / Password123!',
+            signingIn: 'Sedang log masuk...',
+        },
+        register: {
+            title: 'Cipta Akaun',
+            subtitle: 'Sertai untuk mula mengurus pelaburan anda',
+            emailPlaceholder: 'you@example.com',
+            helperPasswordLength: 'Sekurang-kurangnya 8 aksara',
+            creatingAccount: 'Sedang mencipta akaun...',
+            success: 'Akaun berjaya dicipta! Sila log masuk.',
+        },
+        errors: {
+            emailRequired: 'Emel diperlukan',
+            passwordRequired: 'Kata laluan diperlukan',
+            confirmPasswordRequired: 'Sila sahkan kata laluan anda',
+            passwordMismatch: 'Kata laluan tidak sepadan',
+            passwordMinLength: 'Kata laluan mesti sekurang-kurangnya 8 aksara',
+            invalidCredentials: 'Kelayakan tidak sah',
+            registrationFailed: 'Pendaftaran gagal',
+            missingAccessToken: 'Respons log masuk tiada accessToken',
+            missingRefreshToken: 'Respons log masuk tiada refreshToken',
+        },
+    },
+    dashboard: {
+        title: 'Papan Pemuka',
+        subtitleWithName: 'Gambaran keseluruhan portfolio {{name}}',
+        subtitleLoading: 'Sedang memuatkan gambaran keseluruhan portfolio',
+        errors: {
+            loadDashboard: 'Tidak dapat memuatkan papan pemuka.',
+            loadAllocation: 'Tidak dapat memuatkan data peruntukan.',
+            loadTransactions: 'Tidak dapat memuatkan transaksi.',
+            loadPerformance: 'Tidak dapat memuatkan data prestasi.',
+        },
+        empty: {
+            noPortfolio: 'Tiada data portfolio untuk akaun ini buat masa ini.',
+            noAllocation: 'Tiada data peruntukan tersedia.',
+            noTransactions: 'Tiada transaksi terkini tersedia.',
+            noPerformance: 'Tiada data prestasi tersedia.',
+        },
+        summary: {
+            totalInvested: 'Jumlah Dilaburkan',
+            currentValue: 'Nilai Semasa',
+            gainLoss: 'Jumlah Untung / Rugi',
+            returnPercentage: 'Peratus Pulangan',
+        },
+        allocation: {
+            title: 'Peruntukan',
+        },
+        performance: {
+            title: 'Prestasi',
+        },
+        transactions: {
+            title: 'Transaksi Terkini',
+            buy: 'BELI',
+            sell: 'JUAL',
+        },
+    },
+    investments: {
+        title: 'Pelaburan',
+        subtitle: 'Urus pelaburan merentasi portfolio anda.',
+        errors: {
+            loadData: 'Tidak dapat memuatkan data pelaburan.',
+            create: 'Tidak dapat mencipta pelaburan.',
+            update: 'Tidak dapat mengemas kini pelaburan.',
+            delete: 'Tidak dapat memadam pelaburan.',
+        },
+        empty: {
+            noRows: 'Tiada pelaburan ditemui untuk portfolio ini.',
+        },
+        dialog: {
+            addTitle: 'Tambah Pelaburan',
+            editTitle: 'Edit Pelaburan',
+        },
+        validation: {
+            portfolioRequired: 'Portfolio diperlukan',
+            nameMinLength: 'Nama mesti sekurang-kurangnya 2 aksara',
+            quantityPositive: 'Kuantiti mesti nombor positif',
+            purchasePricePositive: 'Harga belian mesti nombor positif',
+            currentPricePositive: 'Harga semasa mesti nombor positif',
+        },
+        assetTypes: {
+            STOCK: 'Saham',
+            BOND: 'Bon',
+            MUTUAL_FUND: 'Dana Amanah',
+        },
+    },
+    transactionsPage: {
+        title: 'Sejarah Transaksi',
+        description: 'Semak aktiviti beli dan jual merentasi portfolio yang dipilih.',
+        filters: {
+            type: 'Jenis Transaksi',
+            all: 'Semua',
+            buy: 'BELI',
+            sell: 'JUAL',
+            searchLabel: 'Cari Aset',
+            searchPlaceholder: 'Cari mengikut nama aset',
+        },
+        columns: {
+            date: 'Tarikh',
+            assetName: 'Nama Aset',
+            assetType: 'Jenis Aset',
+            transactionType: 'Jenis Transaksi',
+            quantity: 'Kuantiti',
+            price: 'Harga',
+            totalValue: 'Jumlah Nilai',
+        },
+        empty: {
+            title: 'Tiada transaksi ditemui',
+            description: 'Cuba ubah penapis atau cipta transaksi baharu untuk bermula.',
+        },
+        errors: {
+            loadData: 'Tidak dapat memuatkan sejarah transaksi.',
+        },
+    },
+};
+
+export default bm;
