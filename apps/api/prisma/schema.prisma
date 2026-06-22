@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum AssetType {
+  STOCK
+  BOND
+  MUTUAL_FUND
+}
+
+enum TransactionType {
+  BUY
+  SELL
+}
+
+model User {
+  id           String      @id @default(uuid())
+  email        String      @unique
+  passwordHash String
+  role         UserRole    @default(USER)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  portfolios   Portfolio[] @relation("UserPortfolios")
+
+  @@map("users")
+}
+
+model Portfolio {
+  id          String       @id @default(uuid())
+  userId      String
+  name        String
+  description String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  // Cascade delete keeps child data consistent when a user is removed.
+  user        User         @relation("UserPortfolios", fields: [userId], references: [id], onDelete: Cascade)
+  investments Investment[] @relation("PortfolioInvestments")
+
+  @@index([userId])
+  @@map("portfolios")
+}
+
+model Investment {
+  id            String        @id @default(uuid())
+  portfolioId   String
+  name          String
+  assetType     AssetType
+  quantity      Decimal       @db.Decimal(20, 4)
+  purchasePrice Decimal       @db.Decimal(20, 4)
+  currentPrice  Decimal       @db.Decimal(20, 4)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  // Cascade delete keeps investments and their transactions aligned to parent lifecycle.
+  portfolio     Portfolio     @relation("PortfolioInvestments", fields: [portfolioId], references: [id], onDelete: Cascade)
+  transactions  Transaction[] @relation("InvestmentTransactions")
+
+  @@index([portfolioId])
+  @@index([assetType])
+  @@map("investments")
+}
+
+model Transaction {
+  id              String          @id @default(uuid())
+  investmentId    String
+  type            TransactionType
+  quantity        Decimal         @db.Decimal(20, 4)
+  price           Decimal         @db.Decimal(20, 4)
+  transactionDate DateTime        @default(now())
+  notes           String?
+  createdAt       DateTime        @default(now())
+  investment      Investment      @relation("InvestmentTransactions", fields: [investmentId], references: [id], onDelete: Cascade)
+
+  @@index([investmentId])
+  @@index([transactionDate])
+  @@map("transactions")
+}
