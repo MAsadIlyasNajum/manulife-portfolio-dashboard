@@ -1,0 +1,182 @@
+const en = {
+    language: {
+        switch: 'Language',
+        en: 'EN',
+        bm: 'BM',
+    },
+    app: {
+        title: 'Portfolio Dashboard',
+        nav: {
+            dashboard: 'Dashboard',
+            investments: 'Investments',
+            transactions: 'Transactions',
+        },
+        logout: {
+            idle: 'Logout',
+            loading: 'Logging out...',
+        },
+    },
+    common: {
+        labels: {
+            emailAddress: 'Email Address',
+            password: 'Password',
+            confirmPassword: 'Confirm Password',
+            portfolio: 'Portfolio',
+            name: 'Name',
+            assetType: 'Asset Type',
+            quantity: 'Quantity',
+            purchasePrice: 'Purchase Price',
+            currentPrice: 'Current Price',
+            investedValue: 'Invested Value',
+            currentValue: 'Current Value',
+            actions: 'Actions',
+            investment: 'Investment',
+            totalBuyValue: 'Total Buy Value',
+            totalSellValue: 'Total Sell Value',
+            netFlow: 'Net Flow',
+            buy: 'Buy',
+            sell: 'Sell',
+            qtyWithValue: 'Qty {{value}}',
+            priceWithValue: 'Price {{value}}',
+            unknownInvestment: 'Unknown investment',
+        },
+        actions: {
+            addInvestment: 'Add Investment',
+            edit: 'Edit',
+            delete: 'Delete',
+            cancel: 'Cancel',
+            create: 'Create',
+            save: 'Save',
+            signIn: 'Sign In',
+            createAccount: 'Create Account',
+        },
+        status: {
+            loading: 'Loading...',
+        },
+    },
+    auth: {
+        tabs: {
+            login: 'Login',
+            register: 'Register',
+        },
+        login: {
+            title: 'Welcome Back',
+            subtitle: 'Sign in to access your portfolio',
+            emailPlaceholder: 'demo@manulife.com',
+            demoHint: 'Demo: demo@manulife.com / Password123!',
+            signingIn: 'Signing in...',
+        },
+        register: {
+            title: 'Create Account',
+            subtitle: 'Join to start managing your investments',
+            emailPlaceholder: 'you@example.com',
+            helperPasswordLength: 'At least 8 characters',
+            creatingAccount: 'Creating Account...',
+            success: 'Account created successfully! Please login.',
+        },
+        errors: {
+            emailRequired: 'Email is required',
+            passwordRequired: 'Password is required',
+            confirmPasswordRequired: 'Please confirm your password',
+            passwordMismatch: 'Passwords do not match',
+            passwordMinLength: 'Password must be at least 8 characters',
+            invalidCredentials: 'Invalid credentials',
+            registrationFailed: 'Registration failed',
+            missingAccessToken: 'Login response missing accessToken',
+            missingRefreshToken: 'Login response missing refreshToken',
+        },
+    },
+    dashboard: {
+        title: 'Dashboard',
+        subtitleWithName: '{{name}} portfolio overview',
+        subtitleLoading: 'Loading portfolio overview',
+        errors: {
+            loadDashboard: 'Unable to load dashboard.',
+            loadAllocation: 'Unable to load allocation data.',
+            loadTransactions: 'Unable to load transactions.',
+            loadPerformance: 'Unable to load performance data.',
+        },
+        empty: {
+            noPortfolio: 'No portfolio data is available for this account yet.',
+            noAllocation: 'No allocation data available.',
+            noTransactions: 'No recent transactions available.',
+            noPerformance: 'No performance data available.',
+        },
+        summary: {
+            totalInvested: 'Total Invested',
+            currentValue: 'Current Value',
+            gainLoss: 'Total Gain / Loss',
+            returnPercentage: 'Return Percentage',
+        },
+        allocation: {
+            title: 'Allocation',
+        },
+        performance: {
+            title: 'Performance',
+        },
+        transactions: {
+            title: 'Recent Transactions',
+            buy: 'BUY',
+            sell: 'SELL',
+        },
+    },
+    investments: {
+        title: 'Investments',
+        subtitle: 'Manage investments across your portfolios.',
+        errors: {
+            loadData: 'Unable to load investment data.',
+            create: 'Unable to create investment.',
+            update: 'Unable to update investment.',
+            delete: 'Unable to delete investment.',
+        },
+        empty: {
+            noRows: 'No investments found for this portfolio.',
+        },
+        dialog: {
+            addTitle: 'Add Investment',
+            editTitle: 'Edit Investment',
+        },
+        validation: {
+            portfolioRequired: 'Portfolio is required',
+            nameMinLength: 'Name must be at least 2 characters',
+            quantityPositive: 'Quantity must be a positive number',
+            purchasePricePositive: 'Purchase price must be a positive number',
+            currentPricePositive: 'Current price must be a positive number',
+        },
+        assetTypes: {
+            STOCK: 'Stock',
+            BOND: 'Bond',
+            MUTUAL_FUND: 'Mutual Fund',
+        },
+    },
+    transactionsPage: {
+        title: 'Transaction History',
+        description: 'Review buy and sell activity across your selected portfolio.',
+        filters: {
+            type: 'Transaction Type',
+            all: 'All',
+            buy: 'BUY',
+            sell: 'SELL',
+            searchLabel: 'Search Asset',
+            searchPlaceholder: 'Search by asset name',
+        },
+        columns: {
+            date: 'Date',
+            assetName: 'Asset Name',
+            assetType: 'Asset Type',
+            transactionType: 'Transaction Type',
+            quantity: 'Quantity',
+            price: 'Price',
+            totalValue: 'Total Value',
+        },
+        empty: {
+            title: 'No transactions found',
+            description: 'Try changing your filters or create a new transaction to get started.',
+        },
+        errors: {
+            loadData: 'Unable to load transaction history.',
+        },
+    },
+};
+
+export default en;
